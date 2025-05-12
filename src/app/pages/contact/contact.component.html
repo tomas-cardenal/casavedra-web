@@ -1,0 +1,56 @@
+<section class="contact-section py-16 bg-gray-100">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl font-semibold text-center mb-8">Contact Me</h2>
+    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+      <mat-form-field appearance="fill" class="w-full mb-4">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          type="text"
+          name="name"
+          ngModel
+          required
+          placeholder="Your Name"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-full mb-4">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          name="email"
+          ngModel
+          required
+          placeholder="Your Email"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-full mb-4">
+        <mat-label>Message</mat-label>
+        <textarea
+          matInput
+          name="message"
+          ngModel
+          required
+          placeholder="Your Message"
+        ></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" class="w-full">
+        Send Message
+      </button>
+    </form>
+
+    <!-- Success and Error Message Display -->
+    @if(successMessage){
+    <div class="success-message text-green-600 mt-4">
+      {{ successMessage }}
+    </div>
+    } @if(errorMessage){
+    <div class="error-message text-red-600 mt-4">
+      {{ errorMessage }}
+    </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,104 @@
+<mat-sidenav-container class="h-screen">
+  <!-- Sidebar -->
+  <mat-sidenav
+    #drawer
+    [mode]="isMobile ? 'over' : 'side'"
+    (openedChange)="onDrawerStateChange($event)"
+    [opened]="!isMobile"
+    class="w-64 bg-white shadow"
+  >
+    <div class="p-4">
+      <img
+        [src]="logoPath"
+        alt="Logo Casa Vedra"
+        class="h-64 mx-auto object-contain mb-4"
+      />
+      <h2
+        class="text-xl font-bold text-center tracking-widest mb-6 hover:underline"
+        routerLink="/"
+      >
+        ALEJANDRO VILLAR
+      </h2>
+      <nav class="flex flex-col gap-4">
+        <a routerLink="/archive" class="hover:underline">Archivo</a>
+        <!-- "Colecciones" toggle -->
+        <button
+          (click)="toggleCollections()"
+          class="flex items-center justify-between w-full text-left hover:underline"
+        >
+          <span>Colecciones</span>
+          <mat-icon
+            class="transition-transform duration-300"
+            [class.rotate-90]="collectionsOpen"
+          >
+            expand_more
+          </mat-icon>
+        </button>
+
+        <!-- Submenu -->
+        @if (collectionsVisible) {
+        <div
+          [@collapse]="collectionsOpen ? 'open' : 'closed'"
+          class="ml-4 flex flex-col text-sm text-gray-700"
+        >
+          <a routerLink="/collections/suenhos" class="hover:underline"
+            >Sueños</a
+          >
+          <a routerLink="/collections/musicos" class="hover:underline"
+            >Músicos en la escuela</a
+          >
+          <a routerLink="/collections/etnicos" class="hover:underline"
+            >Étnicos</a
+          >
+          <a routerLink="/collections/bocetos" class="hover:underline"
+            >Bocetos</a
+          >
+        </div>
+        }
+        <a routerLink="/studio" class="hover:underline">Estudio</a>
+        <a routerLink="/about" class="hover:underline">Sobre mí</a>
+        <a routerLink="/contact" class="hover:underline">Contacto</a>
+      </nav>
+    </div>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+    @if (isMobile) {
+    <mat-toolbar
+      class="bg-white shadow-md px-4 py-2 flex justify-between items-center"
+    >
+      <!-- Left: Logo + Name -->
+      <div class="flex items-center gap-3">
+        <img
+          [src]="logoPath"
+          alt="Logo Casa Vedra"
+          class="h-10 object-contain"
+        />
+        <span
+          class="tracking-widest font-semibold hover:underline text-base sm:text-lg"
+          routerLink="/"
+        >
+          ALEJANDRO VILLAR
+        </span>
+      </div>
+
+      <!-- Right: Hamburger Button -->
+      <button
+        mat-icon-button
+        (click)="drawer.toggle()"
+        [class.rotate-90]="menuOpen"
+        class="transition-transform duration-300 ease-in-out"
+        aria-label="Toggle menu"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    }
+
+    <main class="p-4">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
