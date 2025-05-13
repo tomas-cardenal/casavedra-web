@@ -4,6 +4,9 @@ export interface Artwork {
   id: string;
   name: string;
   imagePath: string;
-  description: string;
-  collection: ArtworkCollection
+  description?: string;
+  collection?: ArtworkCollection;
+  size?: string;
+  technique?: string;
+  year?: number;
 }
