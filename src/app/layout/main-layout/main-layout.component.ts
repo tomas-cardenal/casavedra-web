@@ -13,6 +13,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { LogoPaths } from '../../values/asset-paths';
 
 @Component({
   selector: 'app-main-layout',
@@ -55,7 +56,7 @@ import {
   ],
 })
 export class MainLayoutComponent {
-  logoPath = 'assets/logos/logo.png';
+  logoPath = LogoPaths.LOGO;
   isMobile = false;
   menuOpen = false;
   collectionsOpen = false;

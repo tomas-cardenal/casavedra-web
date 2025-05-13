@@ -4,27 +4,6 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* styles.scss (after @tailwind directives) */
-@layer base {
-  html,
-  body {
-    @apply min-h-screen bg-white;
-  }
-}
-
-body.mat-app-background,
-.mat-app-background,
-.mat-sidenav-container,
-.mat-drawer-container {
-  background-color: #ffffff !important;
-}
-
-mat-toolbar {
-  background-color: #ffffff !important;
-}
-
-mat-sidenav {
-  background-color: #ffffff !important;
-}
 
 html,
 body {
