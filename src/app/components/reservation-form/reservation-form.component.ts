@@ -39,9 +39,10 @@ export class ReservationFormComponent {
         this.error.set(false);
         setTimeout(() => this.submitted.set(false), 3000);
       },
-      error: () => {
+      error: (error) => {
         this.busy.set(false);
         this.error.set(true);
+        console.error('Email send error:', error);
         setTimeout(() => this.error.set(false), 5000);
       },
     });
