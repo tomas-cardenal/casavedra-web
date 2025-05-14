@@ -1,21 +1,25 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // Path to the real environment file
-const envFilePath = path.resolve(__dirname, '../src/environments/environment.prod.ts');
+const envFilePath = path.resolve(
+  __dirname,
+  "../src/environments/environment.prod.ts"
+);
 
 // Map of placeholders to actual ENV variable names
 const replacements = {
-  '__EMAILJS_SERVICE_ID__': process.env.NG_APP_EMAILJS_SERVICE_ID,
-  '__EMAILJS_TEMPLATE_ID__': process.env.NG_APP_EMAILJS_TEMPLATE_ID,
-  '__EMAILJS_PUBLIC_KEY__': process.env.NG_APP_EMAILJS_PUBLIC_KEY,
-  '__RESERVATION_RECIPIENT__': process.env.NG_APP_RESERVATION_RECIPIENT,
+  __EMAILJS_SERVICE_ID__: process.env.NG_APP_EMAILJS_SERVICE_ID,
+  __EMAILJS_CONFIRMATION_TEMPLATE_ID: process.env.NG_APP_EMAILJS_TEMPLATE_ID,
+  __EMAILJS_PUBLIC_KEY__: process.env.NG_APP_EMAILJS_PUBLIC_KEY,
+  __RESERVATION_RECIPIENT__: process.env.NG_APP_RESERVATION_RECIPIENT,
+  __EMAILJS_TEMPLATE_ID__: process.env.NG_APP_EMAILJS_MESSAGE_TEMPLATE_ID,
 };
 
 // Validate that all required environment variables are present
 const missing = Object.entries(replacements).filter(([_, value]) => !value);
 if (missing.length > 0) {
-  console.error('❌ Missing environment variables:');
+  console.error("❌ Missing environment variables:");
   for (const [key, value] of missing) {
     console.error(`  ${key} → ${value}`);
   }
@@ -23,7 +27,7 @@ if (missing.length > 0) {
 }
 
 // Read current environment.prod.ts content
-let fileContent = fs.readFileSync(envFilePath, 'utf8');
+let fileContent = fs.readFileSync(envFilePath, "utf8");
 
 // Replace all placeholders with actual env values
 for (const [placeholder, value] of Object.entries(replacements)) {
@@ -31,5 +35,5 @@ for (const [placeholder, value] of Object.entries(replacements)) {
 }
 
 // Write the updated file back
-fs.writeFileSync(envFilePath, fileContent, 'utf8');
-console.log('✅ environment.prod.ts updated successfully with runtime values.');
+fs.writeFileSync(envFilePath, fileContent, "utf8");
+console.log("✅ environment.prod.ts updated successfully with runtime values.");

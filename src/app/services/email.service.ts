@@ -10,7 +10,8 @@ import { environment } from '../../environments/environment';
 export class EmailService {
   private emailApiUrl = 'https://api.emailjs.com/api/v1.0/email/send';
   private serviceId = environment.emailjs.serviceId;
-  private templateId = environment.emailjs.templateId;
+  private confirmationTemplateId = environment.emailjs.confirmationTemplateId;
+  private messageTemplateId = environment.emailjs.messageTemplateId;
   private userId = environment.emailjs.publicKey;
 
   private alejandroEmail = environment.reservationRecipient;
@@ -36,37 +37,43 @@ export class EmailService {
       email: formData.email,
     };
 
-    const messageToAlejandro = artwork
-      ? this.buildReservationMessage(
-          fullName,
-          formData.email,
-          formData.comments,
-          artwork
-        )
-      : this.buildConsultationMessage(
-          fullName,
-          formData.email,
-          formData.comments
-        );
+    const messageTemplateParams = {
+      name: fullName,
+      email: formData.email,
+      motive: artwork
+        ? `Reserva ${artwork.name} desde www.casavedra.com`
+        : `Consulta desde www.casavedra.com`,
+      message: artwork
+        ? this.buildReservationMessage(
+            fullName,
+            formData.email,
+            formData.comments,
+            artwork
+          )
+        : this.buildConsultationMessage(
+            fullName,
+            formData.email,
+            formData.comments
+          ),
+    };
 
     const emailToAlejandro = this.http.post(this.emailApiUrl, {
       service_id: this.serviceId,
       user_id: this.userId,
-      template_params: {
-        name: fullName,
-        email: this.alejandroEmail,
-        message: messageToAlejandro,
-      },
+      template_id: this.messageTemplateId,
+      template_params: messageTemplateParams,
     });
+
     if (artwork) {
       const buyerConfirmation = this.http.post(this.emailApiUrl, {
         service_id: this.serviceId,
-        template_id: this.templateId,
+        template_id: this.confirmationTemplateId,
         user_id: this.userId,
         template_params: buyerTemplateParams,
       });
       return forkJoin([emailToAlejandro, buyerConfirmation]);
     }
+
     return emailToAlejandro;
   }
 

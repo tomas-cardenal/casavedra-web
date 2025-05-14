@@ -2,8 +2,9 @@ export const environment = {
   production: false,
   emailjs: {
     serviceId: 'N/A',
-    templateId: 'N/A',
+    messageTemplateId: 'N/A',
+    confirmationTemplateId: 'N/A',
     publicKey: 'N/A',
   },
-  reservationRecipient: 'alejandrovillar@example.com',
+  reservationRecipient: 'N/A',
 };
