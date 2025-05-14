@@ -12,7 +12,7 @@ export abstract class AboutSectionPaths {
 export abstract class StudioSectionPaths {
   static readonly STUDIO_FOLDER = 'assets/studio';
   static readonly STUDIO_1 = `${StudioSectionPaths.STUDIO_FOLDER}/1.jpg`;
-  static readonly STUDIO_2 = `${StudioSectionPaths.STUDIO_FOLDER}/2.jpg`;
+  static readonly STUDIO_2 = `${StudioSectionPaths.STUDIO_FOLDER}/2.png`;
 }
 
 export abstract class ContactSectionPaths {

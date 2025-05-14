@@ -27,7 +27,7 @@ let fileContent = fs.readFileSync(envFilePath, 'utf8');
 
 // Replace all placeholders with actual env values
 for (const [placeholder, value] of Object.entries(replacements)) {
-  fileContent = fileContent.replaceAll(placeholder, JSON.stringify(value));
+  fileContent = fileContent.replaceAll(placeholder, value);
 }
 
 // Write the updated file back
