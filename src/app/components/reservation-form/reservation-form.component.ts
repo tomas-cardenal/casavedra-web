@@ -25,18 +25,22 @@ export class ReservationFormComponent {
 
   submitted = signal(false);
   error = signal(false);
+  busy = signal(false);
 
   onSubmit() {
     this.submitted.set(false);
     this.error.set(false);
+    this.busy.set(true);
 
     this.emailService.sendEmail(this.formData, this.artwork()).subscribe({
       next: () => {
+        this.busy.set(false);
         this.submitted.set(true);
         this.error.set(false);
         setTimeout(() => this.submitted.set(false), 3000);
       },
       error: () => {
+        this.busy.set(false);
         this.error.set(true);
         setTimeout(() => this.error.set(false), 5000);
       },

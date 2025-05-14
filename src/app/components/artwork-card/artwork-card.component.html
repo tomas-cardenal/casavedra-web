@@ -1,13 +1,18 @@
-<a (click)="navigate()" class="block rounded shadow">
+<a
+  (click)="navigate()"
+  class="block border border-gray-200 hover:border-black transition-colors"
+>
   <img
     [src]="artwork().imagePath"
     [alt]="artwork().name"
-    class="w-full object-cover aspect-[4/5]"
+    class="w-full object-cover aspect-[4/5] transition-opacity duration-300 hover:opacity-90"
     [attr.view-transition-name]="'artwork-' + artwork().id"
   />
-  <div class="p-3">
-    <h3 class="text-lg font-semibold">{{ artwork().name }}</h3>
-    <p class="text-sm text-gray-600" *ngIf="artwork().size">
+  <div class="px-4 py-5">
+    <h3 class="text-base font-medium tracking-wider text-gray-900">
+      {{ artwork().name }}
+    </h3>
+    <p class="text-sm text-gray-500 mt-1 tracking-wide" *ngIf="artwork().size">
       {{ artwork().size }}
     </p>
   </div>

@@ -1,92 +1,126 @@
 <form
   #reservationForm="ngForm"
   (ngSubmit)="onSubmit()"
-  class="grid gap-4 max-w-xl mx-auto"
+  class="grid gap-6 max-w-xl mx-auto"
 >
-  <div class="opacity-0 animate-fade-in-up [animation-delay:0ms]">
+  <div
+    class="flex items-center border border-gray-300 focus-within:border-black px-3 py-2"
+  >
+    <span class="material-icons-outlined text-gray-400 text-base mr-3"
+      >person</span
+    >
     <input
       required
       name="name"
       [(ngModel)]="formData.name"
       placeholder="Nombre"
-      class="border p-2 rounded w-full"
+      class="flex-1 placeholder-gray-500 focus:outline-none text-black bg-transparent"
       #name="ngModel"
     />
-    @if (name.invalid && name.touched) {
-    <p class="text-sm text-red-600 mt-1">Nombre requerido</p>
-    }
   </div>
+  @if (name.invalid && name.touched) {
+  <p class="text-sm text-red-600 mt-1">Nombre requerido</p>
+  }
 
-  <div class="opacity-0 animate-fade-in-up [animation-delay:100ms]">
+  <!-- Primer Apellido -->
+  <div
+    class="flex items-center border border-gray-300 focus-within:border-black px-3 py-2"
+  >
+    <span class="material-icons-outlined text-gray-400 text-base mr-3"
+      >person</span
+    >
     <input
       required
       name="surname1"
       [(ngModel)]="formData.surname1"
       placeholder="Primer apellido"
-      class="border p-2 rounded w-full"
+      class="flex-1 placeholder-gray-500 focus:outline-none text-black bg-transparent"
       #surname1="ngModel"
     />
-    @if (surname1.invalid && surname1.touched) {
-    <p class="text-sm text-red-600 mt-1">Primer apellido requerido</p>
-    }
   </div>
+  @if (surname1.invalid && surname1.touched) {
+  <p class="text-sm text-red-600 mt-1">Primer apellido requerido</p>
+  }
 
-  <div class="opacity-0 animate-fade-in-up [animation-delay:200ms]">
+  <!-- Segundo Apellido -->
+  <div
+    class="flex items-center border border-gray-300 focus-within:border-black px-3 py-2"
+  >
+    <span class="material-icons-outlined text-gray-400 text-base mr-3"
+      >person</span
+    >
     <input
       name="surname2"
       [(ngModel)]="formData.surname2"
       placeholder="Segundo apellido"
-      class="border p-2 rounded w-full"
+      class="flex-1 placeholder-gray-500 focus:outline-none text-black bg-transparent"
     />
   </div>
 
-  <div class="opacity-0 animate-fade-in-up [animation-delay:300ms]">
+  <!-- Email -->
+  <div
+    class="flex items-center border border-gray-300 focus-within:border-black px-3 py-2"
+  >
+    <span class="material-icons-outlined text-gray-400 text-base mr-3"
+      >mail</span
+    >
     <input
       required
       type="email"
       name="email"
-      email
       [(ngModel)]="formData.email"
       placeholder="Email"
-      class="border p-2 rounded w-full"
+      class="flex-1 placeholder-gray-500 focus:outline-none text-black bg-transparent"
       #email="ngModel"
     />
-    @if (email.invalid && email.touched) {
-    <p class="text-sm text-red-600 mt-1">Email válido requerido</p>
-    }
   </div>
+  @if (email.invalid && email.touched) {
+  <p class="text-sm text-red-600 mt-1">Email válido requerido</p>
+  }
 
-  <div class="opacity-0 animate-fade-in-up [animation-delay:400ms]">
+  <!-- Comentarios -->
+  <div
+    class="flex items-start border border-gray-300 focus-within:border-black px-3 py-2"
+  >
+    <span class="material-icons-outlined text-gray-400 text-base mr-3 mt-1"
+      >chat_bubble</span
+    >
     <textarea
       name="comments"
       [(ngModel)]="formData.comments"
       placeholder="Comentarios"
       rows="4"
-      class="border p-2 rounded w-full"
+      class="flex-1 placeholder-gray-500 resize-none focus:outline-none text-black bg-transparent"
     ></textarea>
   </div>
 
+  <!-- Submit -->
   <button
     type="submit"
-    [disabled]="reservationForm.invalid"
-    class="bg-black text-white py-2 rounded hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+    [disabled]="reservationForm.invalid || busy()"
+    class="w-full text-center py-2 border border-black text-black hover:bg-black hover:text-white transition disabled:opacity-40 disabled:cursor-not-allowed flex justify-center items-center gap-2"
   >
-    @if(artwork()){ Enviar reserva }@else { Enviar consulta }
+    <span *ngIf="!busy()">
+      @if (artwork()) { Enviar reserva } @else { Enviar consulta }
+    </span>
+    <span *ngIf="busy()" class="flex items-center gap-2">
+      <span class="material-icons-outlined animate-spin text-base">sync</span>
+      Enviando...
+    </span>
   </button>
 </form>
-
 @if (submitted()) {
 <div
-  class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded shadow-lg opacity-0 animate-fade-in-up"
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 text-sm tracking-wide shadow-md"
 >
-  @if(artwork()){ ¡Reserva enviada correctamente! }@else { ¡Mensaje enviado
+  @if (artwork()) { ¡Reserva enviada correctamente! } @else { ¡Mensaje enviado
   correctamente! }
 </div>
-} @if(error()){
+} @if (error()) {
 <div
-  class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded shadow-lg opacity-0 animate-fade-in-up"
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-3 text-sm tracking-wide shadow-md"
 >
-  @if(artwork()){ Error al enviar la reserva. Inténtalo de nuevo. }@else { Error
-  al enviar el mensaje. Inténtelo de nuevo. }
+  @if (artwork()) { Error al enviar la reserva. Inténtalo de nuevo. } @else {
+  Error al enviar el mensaje. Inténtelo de nuevo. }
 </div>
 }

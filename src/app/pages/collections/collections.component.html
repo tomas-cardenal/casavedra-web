@@ -1,4 +1,4 @@
-<h1 class="text-2xl text-center tracking-widest font-semibold mb-4">
-  {{ collectionLabel.toUpperCase() }}
-</h1>
-<app-artwork-grid [artworks]="getCollectionArtworks()"> </app-artwork-grid>
+<app-artwork-grid
+  [artworks]="getCollectionArtworks()"
+  [collectionLabel]="collectionLabel"
+></app-artwork-grid>

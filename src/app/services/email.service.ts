@@ -73,12 +73,10 @@ export class EmailService {
           template_params: buyerTemplateParams,
         });
 
-      // Send email to Alejandro, then wait 1 second, then send buyer confirmation
       return emailToAlejandro.pipe(
         switchMap((alejandroRes) =>
           timer(1000).pipe(
             switchMap(() => buyerConfirmation()),
-            // Combine both responses if needed
             concatMap((buyerRes) => of([alejandroRes, buyerRes]))
           )
         )

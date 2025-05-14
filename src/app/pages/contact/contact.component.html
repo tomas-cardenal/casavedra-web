@@ -1,19 +1,22 @@
-<section class="max-w-4xl mx-auto p-6 space-y-6">
-  <h1 class="text-3xl font-bold mb-4">Encargos y contacto</h1>
+<section class="max-w-4xl mx-auto px-6 py-10 space-y-8">
+  <h1     class="text-xl font-semibold tracking-widest text-left text-gray-900 mb-8"
+>
+    ENCARGOS Y CONTACTO
+  </h1>
 
   <div class="flex justify-center">
     <img
       [src]="ContactSectionPaths.CONTACT_ARTWORK"
       alt="Hombre en su jardín"
-      class="rounded shadow max-w-sm mb-6 animate-fade-in-up"
+      class="max-w-sm w-full animate-fade-in-up object-contain"
     />
   </div>
-  <p class="text-md text-gray-700 leading-relaxed">
-    Si estás pensando en regalar o decorar un espacio, no dudes en contactarme
-    vía mail:
+
+  <p class="text-base text-gray-700 leading-relaxed max-w-prose mx-auto">
+    Si estás pensando en regalar o decorar un espacio, no dudes en contactarme vía mail:
     <a
       href="mailto:estudiocasavedra@gmail.com"
-      class="text-pink-600 hover:underline"
+      class="text-gray-900 underline underline-offset-2 hover:text-pink-600 transition"
     >
       estudiocasavedra&#64;gmail.com
     </a>
@@ -21,13 +24,17 @@
     <a
       href="https://www.instagram.com/alejandrovillar.art/"
       target="_blank"
-      class="text-pink-600 hover:underline"
+      class="text-gray-900 underline underline-offset-2 hover:text-pink-600 transition"
     >
       &#64;alejandrovillar.art
     </a>
   </p>
-  <hr class="my-8" />
-  <h2 class="text-2xl font-semibold mb-4">Contactar</h2>
+
+  <div class="border-t border-gray-200"></div>
+  <h2 class="text-lg font-medium tracking-wide text-gray-900">
+    Contactar
+  </h2>
   <div></div>
+
   <app-reservation-form></app-reservation-form>
 </section>

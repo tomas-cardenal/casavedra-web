@@ -2,8 +2,6 @@ import {
   Component,
   input,
   signal,
-  effect,
-  inject,
   computed,
   ViewChild,
   ElementRef,
@@ -24,6 +22,7 @@ import { UseInViewDirective } from '../../directives/in-view.directive';
 })
 export class ArtworkGridComponent {
   artworks = input<Artwork[]>();
+  collectionLabel = input<string | undefined>();
   searchText = signal('');
 
   @ViewChild('searchInput', { static: true })

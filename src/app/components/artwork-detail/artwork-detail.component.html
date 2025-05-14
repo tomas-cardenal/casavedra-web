@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto p-6">
+<div class="max-w-4xl mx-auto px-6 py-10">
   <img
     id="artwork-img"
     class="w-full max-h-[70vh] object-contain opacity-0 animate-fade-in-up"
@@ -7,22 +7,39 @@
     (load)="imageLoaded()"
   />
 
-  <div class="min-h-[32px]"></div>
+  <div class="h-8"></div>
 
-  <h1 class="text-3xl font-bold mb-2">{{ artwork().name }}</h1>
+  <h1 class="text-2xl font-medium tracking-wide text-gray-900 mb-2">
+    {{ artwork().name }}
+  </h1>
 
-  @if (artwork().size) {
-  <p class="text-lg text-gray-600">Tamaño: {{ artwork().size }}</p>
-  } @if (artwork().technique) {
-  <p class="text-lg text-gray-600">Técnica: {{ artwork().technique }}</p>
-  } @if (artwork().year) {
-  <p class="text-lg text-gray-600">Año: {{ artwork().year }}</p>
-  } @if (artwork().description) {
-  <p class="mt-4 text-md text-gray-700 italic">{{ artwork().description }}</p>
-  }
+  <div class="space-y-2 text-sm text-gray-600">
+    @if (artwork().size) {
+    <p class="flex items-center gap-2">
+      <span class="material-icons-outlined text-gray-400 text-base"
+        >straighten</span
+      >
+      Tamaño: {{ artwork().size }}
+    </p>
+    } @if (artwork().technique) {
+    <p class="flex items-center gap-2">
+      <span class="material-icons-outlined text-gray-400 text-base">brush</span>
+      Técnica: {{ artwork().technique }}
+    </p>
+    } @if (artwork().year) {
+    <p class="flex items-center gap-2">
+      <span class="material-icons-outlined text-gray-400 text-base"
+        >calendar_today</span
+      >
+      Año: {{ artwork().year }}
+    </p>
+    }
+  </div>
 
-  <hr class="my-8" />
+  <div class="h-12"></div>
 
-  <h2 class="text-2xl font-semibold mb-4">Reservar esta obra</h2>
+  <h2 class="text-lg font-medium tracking-wide text-gray-900 mb-4">
+    Reservar esta obra
+  </h2>
   <app-reservation-form [artwork]="artwork()"></app-reservation-form>
 </div>
