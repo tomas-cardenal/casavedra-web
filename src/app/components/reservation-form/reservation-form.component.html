@@ -75,11 +75,18 @@
   </button>
 </form>
 
-@if (submitted) {
+@if (submitted()) {
 <div
   class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded shadow-lg opacity-0 animate-fade-in-up"
 >
   @if(artwork()){ ¡Reserva enviada correctamente! }@else { ¡Mensaje enviado
   correctamente! }
+</div>
+} @if(error()){
+<div
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded shadow-lg opacity-0 animate-fade-in-up"
+>
+  @if(artwork()){ Error al enviar la reserva. Inténtalo de nuevo. }@else { Error
+  al enviar el mensaje. Inténtelo de nuevo. }
 </div>
 }

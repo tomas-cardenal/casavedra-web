@@ -1,13 +1,18 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Artwork } from '../../models/artwork';
 import { FormsModule } from '@angular/forms';
+import { EmailService } from '../../services/email.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reservation-form',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './reservation-form.component.html',
 })
 export class ReservationFormComponent {
+  constructor(private emailService: EmailService) {}
+
   artwork = input<Artwork | undefined>();
 
   formData = {
@@ -18,16 +23,23 @@ export class ReservationFormComponent {
     comments: '',
   };
 
-  submitted = false;
+  submitted = signal(false);
+  error = signal(false);
 
   onSubmit() {
-    this.submitted = true;
-    // TODO: Integrate EmailJS or backend call
-    this.submitted = true;
+    this.submitted.set(false);
+    this.error.set(false);
 
-    // Auto-hide the snackbar after 3 seconds
-    setTimeout(() => {
-      this.submitted = false;
-    }, 3000);
+    this.emailService.sendEmail(this.formData, this.artwork()).subscribe({
+      next: () => {
+        this.submitted.set(true);
+        this.error.set(false);
+        setTimeout(() => this.submitted.set(false), 3000);
+      },
+      error: () => {
+        this.error.set(true);
+        setTimeout(() => this.error.set(false), 5000);
+      },
+    });
   }
 }
