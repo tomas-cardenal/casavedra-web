@@ -6,5 +6,4 @@ export const environment = {
     confirmationTemplateId: '__EMAILJS_CONFIRMATION_TEMPLATE_ID',
     publicKey: '__EMAILJS_PUBLIC_KEY__',
   },
-  reservationRecipient: '__RESERVATION_RECIPIENT__',
 };

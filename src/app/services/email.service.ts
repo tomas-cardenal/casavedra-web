@@ -14,8 +14,6 @@ export class EmailService {
   private messageTemplateId = environment.emailjs.messageTemplateId;
   private userId = environment.emailjs.publicKey;
 
-  private alejandroEmail = environment.reservationRecipient;
-
   constructor(private http: HttpClient) {}
 
   sendEmail(
@@ -57,33 +55,40 @@ export class EmailService {
           ),
     };
 
-    const emailToAlejandro = this.http.post(this.emailApiUrl, {
-      service_id: this.serviceId,
-      user_id: this.userId,
-      template_id: this.messageTemplateId,
-      template_params: messageTemplateParams,
-    });
+    const reserveOrContactMail = this.http.post(
+      this.emailApiUrl,
+      {
+        service_id: this.serviceId,
+        user_id: this.userId,
+        template_id: this.messageTemplateId,
+        template_params: messageTemplateParams,
+      },
+      { responseType: 'text' }
+    );
 
     if (artwork) {
       const buyerConfirmation = () =>
-        this.http.post(this.emailApiUrl, {
-          service_id: this.serviceId,
-          template_id: this.confirmationTemplateId,
-          user_id: this.userId,
-          template_params: buyerTemplateParams,
-        });
+        this.http.post(
+          this.emailApiUrl,
+          {
+            service_id: this.serviceId,
+            template_id: this.confirmationTemplateId,
+            user_id: this.userId,
+            template_params: buyerTemplateParams,
+          },
+          { responseType: 'text' }
+        );
 
-      return emailToAlejandro.pipe(
-        switchMap((alejandroRes) =>
+      return reserveOrContactMail.pipe(
+        switchMap((reserverOrContactRes) =>
           timer(1000).pipe(
             switchMap(() => buyerConfirmation()),
-            concatMap((buyerRes) => of([alejandroRes, buyerRes]))
+            concatMap((buyerRes) => of([reserverOrContactRes, buyerRes]))
           )
         )
       );
     }
-
-    return emailToAlejandro;
+    return reserveOrContactMail;
   }
 
   private buildReservationMessage(

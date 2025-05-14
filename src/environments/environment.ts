@@ -6,5 +6,4 @@ export const environment = {
     confirmationTemplateId: 'N/A',
     publicKey: 'N/A',
   },
-  reservationRecipient: 'N/A',
 };
