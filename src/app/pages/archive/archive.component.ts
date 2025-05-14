@@ -7,7 +7,6 @@ import { ArtworkService } from '../../services/artwork.service';
   selector: 'app-archive',
   imports: [ArtworkGridComponent],
   templateUrl: './archive.component.html',
-  styleUrl: './archive.component.scss',
 })
 export class ArchiveComponent {
   constructor(public artworkService: ArtworkService) {}

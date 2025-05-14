@@ -1,4 +1,4 @@
-import { ArtworkCollection } from "../data/artwork-collection";
+import { ArtworkCollection } from '../data/artwork-collection';
 
 export interface Artwork {
   id: string;

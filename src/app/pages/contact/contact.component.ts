@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { EmailService } from '../../services/email.service';
 import { ReservationFormComponent } from '../../components/reservation-form/reservation-form.component'; // Ensure this service exists (we'll explain it below)
 import { ContactSectionPaths } from '../../values/asset-paths';
 
@@ -20,7 +18,6 @@ import { ContactSectionPaths } from '../../values/asset-paths';
     ReservationFormComponent,
   ],
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent {
   ContactSectionPaths = ContactSectionPaths;

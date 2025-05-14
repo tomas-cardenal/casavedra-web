@@ -5,7 +5,6 @@ import { StudioSectionPaths } from '../../values/asset-paths';
   selector: 'app-studio',
   imports: [],
   templateUrl: './studio.component.html',
-  styleUrl: './studio.component.scss',
 })
 export class StudioComponent {
   StudioSectionPaths = StudioSectionPaths;

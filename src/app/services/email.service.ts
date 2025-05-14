@@ -3,11 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmailService {
-
-  private emailApiUrl = 'https://api.emailjs.com/api/v1.0/email/send';  // Example for EmailJS
+  private emailApiUrl = 'https://api.emailjs.com/api/v1.0/email/send'; // Example for EmailJS
 
   constructor(private http: HttpClient) {}
 
@@ -19,8 +18,8 @@ export class EmailService {
       template_params: {
         name: formData.name,
         email: formData.email,
-        message: formData.message
-      }
+        message: formData.message,
+      },
     };
 
     return this.http.post(this.emailApiUrl, emailPayload);

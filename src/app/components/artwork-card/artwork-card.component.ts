@@ -7,7 +7,6 @@ import { Router, RouterModule } from '@angular/router';
   selector: 'app-artwork-card',
   imports: [CommonModule, RouterModule],
   templateUrl: './artwork-card.component.html',
-  styleUrl: './artwork-card.component.scss',
 })
 export class ArtworkCardComponent {
   artwork = input.required<Artwork>();

@@ -35,7 +35,7 @@
           </mat-icon>
         </button>
 
-        <!-- Submenu -->
+        <!-- Collections -->
         @if (collectionsVisible) {
         <div
           [@collapse]="collectionsOpen ? 'open' : 'closed'"
@@ -88,10 +88,10 @@
   <!-- Main content -->
   <mat-sidenav-content>
     @if (isMobile) {
+    <!--Toolbar (only on small screens)-->
     <mat-toolbar
       class="bg-white shadow-md px-4 py-2 flex justify-between items-center"
     >
-      <!-- Left: Logo + Name -->
       <div class="flex items-center gap-3">
         <img
           [src]="logoPath"
@@ -106,7 +106,7 @@
         </span>
       </div>
 
-      <!-- Right: Hamburger Button -->
+      <!-- Right: Hamburger Button (opens sidenav) -->
       <button
         mat-icon-button
         (click)="drawer.toggle()"
@@ -118,6 +118,7 @@
       </button>
     </mat-toolbar>
     @if(!menuOpen){
+    <!--FAB with instagram link (only small screens and when sidenav is closed)-->
     <a
       [href]="instagramLink"
       target="_blank"

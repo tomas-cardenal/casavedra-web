@@ -9,7 +9,6 @@ import { Artwork } from '../../models/artwork';
   selector: 'app-collections',
   imports: [ArtworkGridComponent],
   templateUrl: './collections.component.html',
-  styleUrl: './collections.component.scss',
 })
 export class CollectionsComponent {
   collection: ArtworkCollection | undefined;

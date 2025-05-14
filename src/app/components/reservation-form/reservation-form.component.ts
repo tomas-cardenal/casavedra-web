@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-reservation-form',
   imports: [FormsModule],
   templateUrl: './reservation-form.component.html',
-  styleUrl: './reservation-form.component.scss'
 })
 export class ReservationFormComponent {
   artwork = input<Artwork | undefined>();

@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'casavedra-web';

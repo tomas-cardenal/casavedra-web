@@ -11,9 +11,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { Artwork } from '../../models/artwork';
 import { ArtworkCardComponent } from '../artwork-card/artwork-card.component';
-import { toSignal } from '@angular/core/rxjs-interop';
 import Fuse from 'fuse.js';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
 import { UseInViewDirective } from '../../directives/in-view.directive';
 
@@ -22,7 +21,6 @@ import { UseInViewDirective } from '../../directives/in-view.directive';
   standalone: true,
   imports: [CommonModule, ArtworkCardComponent, UseInViewDirective],
   templateUrl: './artwork-grid.component.html',
-  styleUrl: './artwork-grid.component.scss',
 })
 export class ArtworkGridComponent {
   artworks = input<Artwork[]>();

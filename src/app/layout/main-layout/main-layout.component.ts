@@ -27,7 +27,6 @@ import { LogoPaths } from '../../values/asset-paths';
     RouterModule,
   ],
   templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.scss'],
   animations: [
     trigger('collapse', [
       state(
