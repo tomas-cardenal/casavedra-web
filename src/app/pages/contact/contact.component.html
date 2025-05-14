@@ -1,56 +1,38 @@
-<section class="contact-section py-16 bg-gray-100">
-  <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-3xl font-semibold text-center mb-8">Contact Me</h2>
-    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
-      <mat-form-field appearance="fill" class="w-full mb-4">
-        <mat-label>Name</mat-label>
-        <input
-          matInput
-          type="text"
-          name="name"
-          ngModel
-          required
-          placeholder="Your Name"
-        />
-      </mat-form-field>
+<section class="max-w-4xl mx-auto p-6 space-y-6">
+  <h1 class="text-3xl font-bold mb-4">Encargos y contacto</h1>
 
-      <mat-form-field appearance="fill" class="w-full mb-4">
-        <mat-label>Email</mat-label>
-        <input
-          matInput
-          type="email"
-          name="email"
-          ngModel
-          required
-          placeholder="Your Email"
-        />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="w-full mb-4">
-        <mat-label>Message</mat-label>
-        <textarea
-          matInput
-          name="message"
-          ngModel
-          required
-          placeholder="Your Message"
-        ></textarea>
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" type="submit" class="w-full">
-        Send Message
-      </button>
-    </form>
-
-    <!-- Success and Error Message Display -->
-    @if(successMessage){
-    <div class="success-message text-green-600 mt-4">
-      {{ successMessage }}
-    </div>
-    } @if(errorMessage){
-    <div class="error-message text-red-600 mt-4">
-      {{ errorMessage }}
-    </div>
-    }
+  <!-- ✅ Center the image and give it margin -->
+  <div class="flex justify-center">
+    <img
+      [src]="ContactSectionPaths.CONTACT_ARTWORK"
+      alt="Hombre en su jardín"
+      class="rounded shadow max-w-sm mb-6"
+    />
   </div>
+
+  <!-- ✅ Match spacing/typography with Detail layout -->
+  <p class="text-md text-gray-700 leading-relaxed">
+    Si estás pensando en regalar o decorar un espacio, no dudes en contactarme
+    vía mail:
+    <a
+      href="mailto:estudiocasavedra@gmail.com"
+      class="text-pink-600 hover:underline"
+    >
+      estudiocasavedra&#64;gmail.com
+    </a>
+    o también vía Instagram:
+    <a
+      href="https://www.instagram.com/alejandrovillar.art/"
+      target="_blank"
+      class="text-pink-600 hover:underline"
+    >
+      &#64;alejandrovillar.art
+    </a>
+  </p>
+
+  <hr class="my-8" />
+
+  <h2 class="text-2xl font-semibold mb-4">Contactar</h2>
+  <div></div>
+  <app-reservation-form></app-reservation-form>
 </section>

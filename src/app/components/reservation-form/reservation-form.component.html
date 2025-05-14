@@ -1,0 +1,85 @@
+<form
+  #reservationForm="ngForm"
+  (ngSubmit)="onSubmit()"
+  class="grid gap-4 max-w-xl mx-auto"
+>
+  <div class="opacity-0 animate-fade-in-up [animation-delay:0ms]">
+    <input
+      required
+      name="name"
+      [(ngModel)]="formData.name"
+      placeholder="Nombre"
+      class="border p-2 rounded w-full"
+      #name="ngModel"
+    />
+    @if (name.invalid && name.touched) {
+    <p class="text-sm text-red-600 mt-1">Nombre requerido</p>
+    }
+  </div>
+
+  <div class="opacity-0 animate-fade-in-up [animation-delay:100ms]">
+    <input
+      required
+      name="surname1"
+      [(ngModel)]="formData.surname1"
+      placeholder="Primer apellido"
+      class="border p-2 rounded w-full"
+      #surname1="ngModel"
+    />
+    @if (surname1.invalid && surname1.touched) {
+    <p class="text-sm text-red-600 mt-1">Primer apellido requerido</p>
+    }
+  </div>
+
+  <div class="opacity-0 animate-fade-in-up [animation-delay:200ms]">
+    <input
+      name="surname2"
+      [(ngModel)]="formData.surname2"
+      placeholder="Segundo apellido"
+      class="border p-2 rounded w-full"
+    />
+  </div>
+
+  <div class="opacity-0 animate-fade-in-up [animation-delay:300ms]">
+    <input
+      required
+      type="email"
+      name="email"
+      email
+      [(ngModel)]="formData.email"
+      placeholder="Email"
+      class="border p-2 rounded w-full"
+      #email="ngModel"
+    />
+    @if (email.invalid && email.touched) {
+    <p class="text-sm text-red-600 mt-1">Email válido requerido</p>
+    }
+  </div>
+
+  <div class="opacity-0 animate-fade-in-up [animation-delay:400ms]">
+    <textarea
+      name="comments"
+      [(ngModel)]="formData.comments"
+      placeholder="Comentarios"
+      rows="4"
+      class="border p-2 rounded w-full"
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="reservationForm.invalid"
+    class="bg-black text-white py-2 rounded hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    Enviar reserva
+  </button>
+</form>
+
+@if (submitted) {
+<div
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded shadow-lg opacity-0 animate-fade-in-up"
+>
+  @if(artwork()){ ¡Reserva enviada correctamente! }@else { ¡Mensaje enviado
+  correctamente! }
+</div>
+}
