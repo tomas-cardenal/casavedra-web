@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
   emailjs: {
-    serviceId: process.env['NG_APP_EMAILJS_SERVICE_ID'],
-    templateId: process.env['NG_APP_EMAILJS_TEMPLATE_ID'],
-    publicKey: process.env['NG_APP_EMAILJS_PUBLIC_KEY'],
+    serviceId: '__EMAILJS_SERVICE_ID__',
+    templateId: '__EMAILJS_TEMPLATE_ID__',
+    publicKey: '__EMAILJS_PUBLIC_KEY__',
   },
-  reservationRecipient: 'tomas.cardenal.lopez@gmail.com', // Replace with your testing email
+  reservationRecipient: '__RESERVATION_RECIPIENT__',
 };
