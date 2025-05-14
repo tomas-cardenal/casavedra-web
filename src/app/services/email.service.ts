@@ -51,7 +51,6 @@ export class EmailService {
 
     const emailToAlejandro = this.http.post(this.emailApiUrl, {
       service_id: this.serviceId,
-      template_id: '', // No template used, full message below
       user_id: this.userId,
       template_params: {
         name: fullName,
