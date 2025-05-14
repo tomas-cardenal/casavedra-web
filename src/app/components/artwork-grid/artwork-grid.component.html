@@ -1,5 +1,13 @@
+<div class="mb-6 max-w-md mx-auto">
+  <input
+    #searchInput
+    type="text"
+    placeholder="Buscar obra por nombre o descripción..."
+    class="border border-gray-300 rounded px-4 py-2 w-full"
+  />
+</div>
 <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-  @for (artwork of artworks(); let i = $index; track artwork.id) {
+  @for (artwork of filteredArtworks(); track artwork.id) {
   <div
     useInView
     #inView="inView"

@@ -1,3 +1,4 @@
+import { INSTAGRAM_LINK } from './../../values/constants';
 import { Component, ViewChild, inject } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -61,6 +62,7 @@ export class MainLayoutComponent {
   menuOpen = false;
   collectionsOpen = false;
   collectionsVisible = false;
+  instagramLink = INSTAGRAM_LINK;
 
   private breakpointObserver = inject(BreakpointObserver);
   private router = inject(Router);

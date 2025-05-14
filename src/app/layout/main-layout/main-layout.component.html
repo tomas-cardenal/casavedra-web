@@ -58,6 +58,29 @@
         <a routerLink="/studio" class="hover:underline">Estudio</a>
         <a routerLink="/about" class="hover:underline">Sobre mí</a>
         <a routerLink="/contact" class="hover:underline">Contacto</a>
+
+        <a
+          [href]="instagramLink"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center justify-between w-full text-left hover:text-pink-600 transition group"
+          aria-label="Instagram"
+          title="Instagram"
+        >
+          <span class="group-hover:underline tracking-wide"> Instagram </span>
+          <!-- Instagram Icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 text-pink-500"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm4.75-.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"
+            />
+          </svg>
+        </a>
       </nav>
     </div>
   </mat-sidenav>
@@ -96,7 +119,7 @@
     </mat-toolbar>
     }
 
-    <main class="p-4">
+    <main id="main-layout-contents" class="p-4">
       <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>

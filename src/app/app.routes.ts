@@ -31,6 +31,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'artwork/:id',
+        loadComponent: () =>
+          import('./pages/artwork-page/artwork-page.component').then(
+            (m) => m.ArtworkPageComponent
+          ),
+      },
+      {
         path: 'studio',
         loadComponent: () =>
           import('./pages/studio/studio.component').then(
