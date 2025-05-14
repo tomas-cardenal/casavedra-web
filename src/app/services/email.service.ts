@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, concatMap, of, switchMap, timer } from 'rxjs';
 import { Artwork } from '../models/artwork';
 import { environment } from '../../environments/environment';
 
@@ -65,13 +65,24 @@ export class EmailService {
     });
 
     if (artwork) {
-      const buyerConfirmation = this.http.post(this.emailApiUrl, {
-        service_id: this.serviceId,
-        template_id: this.confirmationTemplateId,
-        user_id: this.userId,
-        template_params: buyerTemplateParams,
-      });
-      return forkJoin([emailToAlejandro, buyerConfirmation]);
+      const buyerConfirmation = () =>
+        this.http.post(this.emailApiUrl, {
+          service_id: this.serviceId,
+          template_id: this.confirmationTemplateId,
+          user_id: this.userId,
+          template_params: buyerTemplateParams,
+        });
+
+      // Send email to Alejandro, then wait 1 second, then send buyer confirmation
+      return emailToAlejandro.pipe(
+        switchMap((alejandroRes) =>
+          timer(1000).pipe(
+            switchMap(() => buyerConfirmation()),
+            // Combine both responses if needed
+            concatMap((buyerRes) => of([alejandroRes, buyerRes]))
+          )
+        )
+      );
     }
 
     return emailToAlejandro;
