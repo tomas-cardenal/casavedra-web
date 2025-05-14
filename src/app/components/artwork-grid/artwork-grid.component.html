@@ -1,12 +1,38 @@
-<div class="mb-6 max-w-md mx-auto">
-  <input
-    #searchInput
-    type="text"
-    placeholder="Buscar obra por nombre o descripción..."
-    class="border border-gray-300 rounded px-4 py-2 w-full"
-  />
+<!-- Right-aligned and aligned-with-grid search box -->
+<div class="mb-6 px-4 flex justify-end">
+  <div class="relative w-full max-w-md">
+    <!-- Search icon -->
+    <div
+      class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+    >
+      <svg
+        class="w-5 h-5 text-gray-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1 0 6.5 6.5a7.5 7.5 0 0 0 10.6 10.6z"
+        />
+      </svg>
+    </div>
+
+    <!-- Input -->
+    <input
+      #searchInput
+      type="text"
+      placeholder="Buscar obras..."
+      class="pl-10 pr-4 py-2 w-full rounded-md border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:outline-none transition shadow-sm"
+    />
+  </div>
 </div>
-<div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+<!-- Artwork grid -->
+<div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4">
   @for (artwork of filteredArtworks(); track artwork.id) {
   <div
     useInView
