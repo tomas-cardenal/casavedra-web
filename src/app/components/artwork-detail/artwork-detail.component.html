@@ -33,6 +33,17 @@
       >
       Año: {{ artwork().year }}
     </p>
+    } @if (artwork().collection) {
+    <p class="flex items-center gap-2">
+      <span class="material-icons-outlined text-gray-400 text-base"
+        >collections</span
+      >
+      Colección: {{ getLabelForArtworkCollection() }}
+    </p>
+    } @if (artwork().description) {
+    <p class="text-sm text-gray-600 leading-relaxed tracking-wide pt-4">
+      {{ artwork().description }}
+    </p>
     }
   </div>
 

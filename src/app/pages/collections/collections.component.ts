@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArtworkCollection } from '../../data/artwork-collection';
+import {
+  ArtworkCollection,
+  getLabelForArtworkCollection,
+} from '../../data/artwork-collection';
 import { ArtworkGridComponent } from '../../components/artwork-grid/artwork-grid.component';
 import { ArtworkService } from '../../services/artwork.service';
 import { Artwork } from '../../models/artwork';
@@ -27,19 +30,8 @@ export class CollectionsComponent {
     });
   }
 
-  getLabelFor(c: ArtworkCollection): string {
-    switch (c) {
-      case ArtworkCollection.suenhos:
-        return 'Sueños';
-      case ArtworkCollection.musicos:
-        return 'Músicos en la escuela';
-      case ArtworkCollection.etnicos:
-        return 'Étnicos';
-      case ArtworkCollection.bocetos:
-        return 'Bocetos';
-      default:
-        return '';
-    }
+  getLabelFor(collection: ArtworkCollection): string {
+    return getLabelForArtworkCollection(collection);
   }
 
   getCollectionArtworks(): Artwork[] {
