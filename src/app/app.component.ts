@@ -1,5 +1,6 @@
 import { RouterOutlet } from '@angular/router';
 import { Component } from '@angular/core';
+import { ScrollService } from './services/scroll.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  constructor(private scrollService: ScrollService) {}
   title = 'casavedra-web';
 }

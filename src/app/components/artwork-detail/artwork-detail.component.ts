@@ -13,13 +13,6 @@ import { getLabelForArtworkCollection } from '../../data/artwork-collection';
 export class ArtworkDetailComponent {
   artwork = input.required<Artwork>();
 
-  imageLoaded() {
-    const element = document.getElementById('artwork-img');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }
-
   getLabelForArtworkCollection(): string {
     if (this.artwork().collection !== undefined) {
       return getLabelForArtworkCollection(this.artwork().collection!);
