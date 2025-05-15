@@ -15,6 +15,7 @@ import {
   animate,
 } from '@angular/animations';
 import { LogoPaths } from '../../values/asset-paths';
+import { ScrollService } from '../../services/scroll.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -68,6 +69,8 @@ export class MainLayoutComponent {
 
   @ViewChild('drawer') drawer!: MatSidenav;
 
+  constructor(public scrollService: ScrollService) {}
+
   ngOnInit() {
     // Update layout based on screen size
     this.breakpointObserver
@@ -86,6 +89,10 @@ export class MainLayoutComponent {
           this.drawer.close();
         }
       });
+  }
+
+  ngAfterViewInit() {
+    this.scrollService.initScrollTracking();
   }
 
   toggleCollections() {

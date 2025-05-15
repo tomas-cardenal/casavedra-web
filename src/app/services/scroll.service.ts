@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
@@ -7,6 +7,8 @@ export class ScrollService {
   private currentUrl = '';
   private scrollPositions = new Map<string, number>();
   private containerId = 'main-scroll-container';
+  scrollDirection = signal<'up' | 'down'>('up');
+  private lastY = 0;
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
@@ -32,6 +34,23 @@ export class ScrollService {
           container?.scrollTo({ top: 0 });
         }
       }
+    });
+  }
+
+  initScrollTracking() {
+    const container = document.getElementById(this.containerId);
+    if (!container) return;
+
+    container.addEventListener('scroll', () => {
+      const currentY = container.scrollTop;
+
+      if (currentY > this.lastY + 10) {
+        this.scrollDirection.set('down');
+      } else if (currentY < this.lastY - 10) {
+        this.scrollDirection.set('up');
+      }
+
+      this.lastY = currentY;
     });
   }
 

@@ -92,7 +92,9 @@
     @if (isMobile) {
     <!-- Toolbar (on mobile or smaller screens)  -->
     <mat-toolbar
-      class="bg-white border-b border-gray-200 px-4 py-2 flex justify-between items-center"
+      class="border-b border-gray-200 px-4 py-2 flex justify-between items-center sticky top-0 z-40 transition-transform duration-300"
+      [class.-translate-y-full]="scrollService.scrollDirection() === 'down'"
+      [class.translate-y-0]="scrollService.scrollDirection() === 'up'"
     >
       <div class="flex items-center gap-3">
         <img
